@@ -280,7 +280,7 @@ iframe {
                 </ul>
             </div>
   <div class="ml-96 mt-2">
-      <button class="text-white text-xl font-mono bg-transparent border-2 border-white hover:border-green-300 px-4 py-2  hover:text-green-300">Resume</button>
+      <button id="downloadButton" class="text-white text-xl font-mono bg-transparent border-2 border-white hover:border-green-300 px-4 py-2  hover:text-green-300">Resume</button>
     </div>
 
         </div>
@@ -468,20 +468,24 @@ iframe {
         </div>
 
         <div class="ml-16 mt-10 grid grid-cols-3">
-            <div class="bg-gray-500 h-96 w-80 border-8 rounded-2xl border-gray-800 hover:border-green-300">
-                <div>
-                    <img src="./assets/Screenshot 2023-10-01 205514.png" class="ml-5 mt-10 border-4 border-black rounded-xl h-52 w-60" alt="blogs">
-                </div>
-                <h1 class="block ml-5 mt-3 text-lg font-bold text-black">Exploring the Solana Automation Landscape</h1>
-                <h2 class="block ml-5 font-semibold text-grey-200">In the world of blockchain technology...</h2>
-            </div>
-            <div class="bg-gray-500 h-96 w-80 border-8 rounded-2xl border-gray-800 hover:border-green-300">
+          <div class="bg-gray-500 h-96 w-80 border-8 rounded-2xl border-gray-800 hover:border-green-300">
+              <a href="https://medium.com/@manicdon7/title-exploring-the-solana-automation-landscape-and-enabling-real-time-data-retrieval-with-parsiq-ed65b67f1b05">
               <div>
-                  <img src="./assets/Screenshot 2023-10-01 205710.png" class="ml-5 mt-10 border-4 border-black rounded-xl h-52 w-60" alt="blogs">
+                <img src="./assets/Screenshot 2023-10-01 205514.png" class="ml-5 mt-10 border-4 border-black rounded-xl h-52 w-60" alt="blogs">
               </div>
               <h1 class="block ml-5 mt-3 text-lg font-bold text-black">Exploring the Solana Automation Landscape</h1>
               <h2 class="block ml-5 font-semibold text-grey-200">In the world of blockchain technology...</h2>
-          </div>
+            </a>
+            </div>
+            <div class="bg-gray-500 h-96 w-80 border-8 rounded-2xl border-gray-800 hover:border-green-300">
+                <a href="https://medium.com/@manicdon7/title-empowering-open-source-introducing-nosana-the-decentralized-computation-platform-dd6685839e08">
+                <div>
+                  <img src="./assets/Screenshot 2023-10-01 205710.png" class="ml-5 mt-10 border-4 border-black rounded-xl h-52 w-60" alt="blogs">
+                </div>
+                <h1 class="block ml-5 mt-3 text-lg font-bold text-black">Empowering Open Source: Introducing Nosana</h1>
+                <h2 class="block ml-5 font-semibold text-grey-200">In today's digital landscape, open-source initiatives.. </h2>
+              </a>
+              </div>
         </div>
     </div>
   </div>
@@ -542,5 +546,21 @@ iframe {
           });
       });
   </script>
+  <script>
+    // Function to handle the button click event
+    document.getElementById("downloadButton").addEventListener("click", function () {
+        // Replace 'your-pdf-file.pdf' with the actual path to your PDF file
+        const pdfURL = 'Screenshot 2023-04-21 210834.png';
+
+        // Create an anchor element to trigger the download
+        const downloadLink = document.createElement("a");
+        downloadLink.href = pdfURL;
+        downloadLink.download = 'Resume.pdf'; // Optional: specify the file name to save as
+        downloadLink.target = "_blank";
+
+        // Simulate a click event on the anchor element to trigger the download
+        downloadLink.click();
+    });
+</script>
 </body>
 </html> 
