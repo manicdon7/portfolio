@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
     <title>Portfolio</title>
     <link rel="icon" href="http://icons8.com/icons">
     <style>
@@ -112,7 +113,7 @@ iframe {
 .universe-container {
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(1600px at 70% 120%, #212750 10%, #020409 100%);
+  background-image: radial-gradient(1600px at 70% 120%, #1e2760 10%, #071024 100%);
 }
 
 .content {
@@ -139,11 +140,43 @@ iframe {
   margin-left: -800px;
   z-index: 100000;
 }
+
+/* Default styles for all screen sizes */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive card grid with a minimum card width of 250px */
+  grid-gap: 20px;
+}
+
+.card {
+  text-align: center;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto; /* Maintain aspect ratio for images */
+}
+
+/* Media query for screens with a maximum width of 768px (e.g., smartphones) */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust card size for smaller screens */
+    grid-gap: 10px;
+  }
+}
+
+/* Media query for screens with a minimum width of 769px (e.g., tablets and larger) */
+@media (min-width: 769px) {
+  .container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Restore original card size for larger screens */
+    grid-gap: 40px;
+  }
+}
+
 </style>
 </head>
-<body class="">
+<body class=" overflow-x-hidden">
       <!-- THE UNIVERSE. Code adapted from https://codepen.io/Acuetouag/pen/vOgmza -->
-      
       <div class="universe">
         <div class="universe-container">
           <div class="content">
@@ -265,10 +298,12 @@ iframe {
     </div>
     </div>
     <nav class="top-0 sticky">
-        <div class="grid grid-cols-3">  
-            <div>
-                <svg></svg>
-            </div>
+        <div class="lg:grid lg:grid-cols-3 hidden">  
+          <div class="m-5">
+            <a href="/">
+              <img src="/assets/icons8-developer.gif" class="h-12 lg:w-12" alt="logo image" />
+            </a>
+          </div>
             <div class="text-white font-mono">
                 <ul class="flex gap-7 pt-4 text-xl">
                     <a href="#Home"><li class="hover:text-green-400">Home</li></a>
@@ -280,18 +315,44 @@ iframe {
                 </ul>
             </div>
   <div class="ml-96 mt-2">
-      <button id="downloadButton" class="text-white text-xl font-mono bg-transparent border-2 border-white hover:border-green-300 px-4 py-2  hover:text-green-300">Resume</button>
+      <button id="downloadButton" class="text-white text-xl font-mono bg-transparent border-2 border-white hover:border-green-300 px-4 py-2 mr-8 hover:text-green-300">Resume</button>
     </div>
 
         </div>
+        <div>
+          <div class="lg:hidden flex justify-evenly">
+            <div>
+                <svg class="hidden"></svg>
+            </div>
+            <div x-data="{ open: false }" class=" ml-10 text-white">
+                <button @click="open = !open" class="text-white text-2xl font-mono">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <ul x-show="open" class="pt-2 text-xl" @click.away="open = false">
+                    <a href="#Home"><li class="hover:text-green-400">Home</li></a>
+                    <a href="#Services"><li class="hover:text-green-400">Services</li></a>
+                    <a href="#Portfolio"><li class="hover:text-green-400">Portfolio</li></a>
+                    <a href="#Blog"><li class="hover:text-green-400">Blog</li></a>
+                    <a href="https://github.com/manicdon7"><li class="hover:text-green-400">Github</li></a>
+                    <a href="#Contact"><li class="hover:text-green-400">Contact</li></a>
+                </ul>
+            </div>
+            <div class="ml-80 mt-2">
+                <button id="downloadButton" class="text-white text-xl font-mono pr-5 bg-transparent border-2 border-white hover:border-green-300 px-4 py-2 hover:text-green-300">Resume</button>
+            </div>
+        </div>
+        
+        </div>
     </nav>
     <main>
-        <div class="flex">
+        <div class="lg:flex sm:block">
             <div>
-                <div class="text-5xl pl-60 pt-32 font-sans font-bold text-white">
-                    <h1>Hello, I'm <span class=" text-red-500">Mani kandan</span></h1>
+                <div class="lg:text-5xl text-4 lg:pl-60 lg:pt-40 pl-10 pt-32 font-sans font-bold text-white">
+                    <h1 class="cursor-default">Hello, I'm <span class=" text-red-500">Mani kandan</span></h1>
                 </div>
-                <div class="text-xl pl-60 pt-4 text-white font-sans flex gap-3">
+                <div class="text-xl lg:pl-60 lg:pt-4 pt-4 pl-10 text-white font-sans flex gap-3">
                     <h1>Let's Connect</h1>
                     <a href="https://www.facebook.com/manikandan.m.manikandan.961"><svg class="h-10 w-12 hover:bg-white" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
                         <path d="M25,3C12.85,3,3,12.85,3,25c0,11.03,8.125,20.137,18.712,21.728V30.831h-5.443v-5.783h5.443v-3.848 c0-6.371,3.104-9.168,8.399-9.168c2.536,0,3.877,0.188,4.512,0.274v5.048h-3.612c-2.248,0-3.033,2.131-3.033,4.533v3.161h6.588 l-0.894,5.783h-5.694v15.944C38.716,45.318,47,36.137,47,25C47,12.85,37.15,3,25,3z"></path>
@@ -310,15 +371,15 @@ iframe {
                         </svg></a>
             </div>
         </div>
-        <div class="pl-28 mt-8">
-            <img class="h-72 rounded-full border-8 border-white hover:border-green-500 transition-colors ease-in" src="./assets/WhatsApp Image 2023-07-20 at 18.50.22.jpg" alt="ManiKandan">
+        <div class="lg:pl-40 flex justify-center pt-20">
+            <img class="lg:h-72 lg:w-full h-72 w-72 rounded-full border-8 border-white hover:border-green-500 transition-colors ease-in" src="./assets/WhatsApp Image 2023-07-20 at 18.50.22.jpg" alt="ManiKandan">
         </div>
     </div>
-    <div id="Home" class="flex mt-60 ml-16">
+    <div id="Home" class="lg:flex block lg:mt-60 lg:ml-16 mt-20 mx-20 cursor-default">
         <div class="text-5xl text-white">
             <h1 class="uppercase text-5xl font-bold">Who Am I?</h1>
             <h2 class="text-2xl mt-3">I'm Mani Kandan, a Web Designer & web Developer</h2>
-            <p class="text-lg mt-3 ">
+            <p class="text-lg mt-3 align-middle">
                 As a passionate backend developer, I am driven to build applications and websites with powerful tech stacks, infusing 
                  them with fantastic ideas. My true calling lies in working on sustainable and impactful projects that leave a positive 
                   mark on the world. With a profound interest in creating a better future, I eagerly seek opportunities to utilize my skills
@@ -343,46 +404,47 @@ iframe {
                     </svg></a>
         </div>
         </div>
-        <div class="block mr-28">
-            <div class="pl-60">
-                <div class="flex items-end justify-between text-white">
+        <div class="block mr-28 mt-10">
+            <div class="lg:pl-60">
+                <div class="lg:flex flex lg:items-end lg:justify-between text-white">
                     <h4 class="font-sans font-semibold uppercase text-white">
                         PYTHON
                 </h4>
-                <h3 class="font-sans text-3xl pl-60 font-bold text-primary">85%</h3>
+                <h3 class="font-sans lg:text-3xl text-xl lg:pl-60 pl-40 font-bold">85%</h3>
+                
             </div>
               <div class="mt-2 h-3 w-full rounded-full bg-gray-400">
                 <div class="h-3 rounded-full bg-blue-800" style="width: 85%"></div>
             </div>
         </div>
-        <div class="pl-60 mt-3">
-            <div class="flex items-end justify-between text-white">
+        <div class="lg:pl-60 lg:mt-3 mt-3">
+            <div class="lg:flex flex lg:items-end lg:justify-between text-white">
                 <h4 class="font-sans font-semibold uppercase text-white">
                     JAVASCRIPT
             </h4>
-            <h3 class="font-sans text-3xl pl-60 font-bold text-primary">65%</h3>
+            <h3 class="font-sans lg:text-3xl text-xl lg:pl-60 px-36 font-bold text-primary">65%</h3>
         </div>
           <div class="mt-2 h-3 w-full rounded-full bg-gray-400">
             <div class="h-3 rounded-full bg-blue-800" style="width: 65%"></div>
         </div>
     </div>
-    <div class="pl-60 mt-3">
-        <div class="flex items-end justify-between text-white">
+    <div class="lg:pl-60 lg:mt-3 mt-3">
+        <div class="lg:flex flex lg:items-end lg:justify-between text-white">
             <h4 class="font-sans font-semibold uppercase text-white">
                 HTML&CSS
         </h4>
-        <h3 class="font-sans text-3xl pl-60 font-bold text-primary">90%</h3>
+        <h3 class="font-sans lg:text-3xl text-xl lg:pl-60 pl-36 font-bold text-primary">90%</h3>
     </div>
       <div class="mt-2 h-3 w-full rounded-full bg-gray-400">
         <div class="h-3 rounded-full bg-blue-800" style="width: 90%"></div>
     </div>
 </div>
-<div class="pl-60 mt-3">
-    <div class="flex items-end justify-between text-white">
+<div class="lg:pl-60 lg:mt-3 mt-3">
+    <div class="lg:flex flex lg:items-end lg:justify-between text-white">
         <h4 class="font-sans font-semibold uppercase text-white">
             FIGMA
     </h4>
-    <h3 class="font-sans text-3xl pl-60 font-bold text-primary">75%</h3>
+    <h3 class="font-sans lg:text-3xl lg:pl-60 px-40 font-bold text-primary">75%</h3>
 </div>
   <div class="mt-2 h-3 w-full rounded-full bg-gray-400">
     <div class="h-3 rounded-full bg-blue-800" style="width: 75%"></div>
@@ -391,26 +453,26 @@ iframe {
     </div>
     </div>
     </div>
-    <div class="mt-60" id="Services">
-        <div class="text-6xl text-white flex justify-center">
+    <div class="mt-20" id="Services">
+        <div class="lg:text-6xl text-4xl px-5 text-white lg:flex lg:justify-center">
             <h1 class="uppercase">Here's What I'm good at</h1>
         </div>
-        <div class="l-container">
+        <div class="l-container lg:flex">
   <div class="b-game-card">
     <div class="b-game-card__cover" style="background-image: url() ;">
-        <svg class="ml-16 mt-16" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
+        <svg class="lg:ml-16 lg:mt-16 ml-6 mt-5" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
             <path d="M 5 2 C 3.355469 2 2 3.355469 2 5 L 2 35 C 2 36.644531 3.355469 38 5 38 L 19 38 L 19 40 L 10 40 C 9.96875 40 9.9375 40 9.90625 40 C 9.636719 40.027344 9.386719 40.160156 9.21875 40.375 L 4.21875 46.375 C 3.976563 46.675781 3.929688 47.085938 4.097656 47.433594 C 4.265625 47.78125 4.617188 48 5 48 L 45 48 C 45.382813 48 45.734375 47.78125 45.902344 47.433594 C 46.070313 47.085938 46.023438 46.675781 45.78125 46.375 L 40.78125 40.375 C 40.589844 40.136719 40.304688 40 40 40 L 31 40 L 31 38 L 45 38 C 46.644531 38 48 36.644531 48 35 L 48 5 C 48 3.355469 46.644531 2 45 2 Z M 5 4 L 45 4 C 45.554688 4 46 4.445313 46 5 L 46 35 C 46 35.554688 45.554688 36 45 36 L 5 36 C 4.445313 36 4 35.554688 4 35 L 4 5 C 4 4.445313 4.445313 4 5 4 Z M 6 6 L 6 34 L 44 34 L 44 6 Z M 8 8 L 42 8 L 42 32 L 8 32 Z M 19.28125 11.28125 L 11.28125 19.28125 L 10.59375 20 L 11.28125 20.71875 L 19.28125 28.71875 L 20.71875 27.28125 L 13.4375 20 L 20.71875 12.71875 Z M 30.71875 11.28125 L 29.28125 12.71875 L 36.5625 20 L 29.28125 27.28125 L 30.71875 28.71875 L 38.71875 20.71875 L 39.40625 20 L 38.71875 19.28125 Z M 21 38 L 29 38 L 29 42 L 21 42 Z M 10.46875 42 L 19 42 L 19 44 L 31 44 L 31 42 L 39.53125 42 L 42.875 46 L 7.125 46 Z"></path>
         </svg>
-        <h1 class="ml-9 mt-10 text-xl text-white">WEB DEVELOPMENT</h1>
-        <p class="text-sm ml-7 mt-4 text-white">I can provide you with flexible <br>
+        <h1 class="lg:ml-9 lg:mt-10 lg:text-xl ml-3 mt-4 text-sm text-white">WEB DEVELOPMENT</h1>
+        <p class="text-sm lg:ml-7 lg:mt-4 ml-3 mt-3 text-white">I can provide you with flexible <br>
              and efficient work in web development</p>
 
     </div>
   </div>
   <div class="b-game-card">
     <div class="b-game-card__cover" style="background-image: url() ;">
-        <img src="./assets/icons8-writing-down-48.png" class="h-24 ml-16 mt-16 w-24" alt="">
-        <h1 class="ml-6 mt-10 text-xl text-white">TECHNICAL WRITING</h1>
+        <img src="./assets/icons8-writing-down-48.png" class="h-24 lg:ml-16 lg:mt-16 ml-8 mt-7 w-24" alt="">
+        <h1 class="lg:ml-6 lg:mt-10 ml-3 mt-4 lg:text-xl text-sm text-white">TECHNICAL WRITING</h1>
         <p class="text-sm ml-5 mt-4 text-white">I love writing about technology stacks.
              Check out my blogs <br> below.</p>
 
@@ -418,9 +480,9 @@ iframe {
   </div>
   <div class="b-game-card">
     <div class="b-game-card__cover" style="background-image: url() ;">
-        <img src="./assets/icons8-web-design-64.png" class="h-24 ml-16 mt-16 w-24" alt="">
-        <h1 class="ml-14 mt-10 text-xl text-white">WEB DESIGN</h1>
-        <p class="text-sm ml-7 mt-4 text-white">I have a lot of creativity in designing
+        <img src="./assets/icons8-web-design-64.png" class="h-24 lg:ml-16 lg:mt-16 ml-7 mt-5 w-24" alt="">
+        <h1 class="lg:ml-14 lg:mt-10 ml-8 lg:text-xl text-sm text-white">WEB DESIGN</h1>
+        <p class="text-sm lg:ml-7 lg:mt-4 ml-7 mt-3 text-white">I have a lot of creativity in designing
              web pages and <br> I love to design.</p>
 
     </div>
@@ -429,7 +491,7 @@ iframe {
     </div>
     <div class="mt-40" id="Portfolio">
         <div class="flex justify-center">
-            <h1 class="text-7xl text-white">CHECK OUT MY PORTFOLIO</h1>
+            <h1 class="lg:text-7xl text-4xl text-white">CHECK OUT MY WORKS</h1>
         </div>
     </div>
     <div
@@ -459,15 +521,15 @@ iframe {
   <div id="Blog">
     <div class="text-white">
         <div class="flex justify-center mt-28">
-            <h1 class="uppercase text-7xl">I also like to write</h1>
+            <h1 class="uppercase lg:text-7xl text-5xl">I also like to write</h1>
         </div>
         <div class="flex justify-center mt-8">
-            <h2 class="text-4xl">
-                Check out latest posts!
+            <h2 class="lg:text-4xl text-3xl">
+                Check out my latest posts!
             </h2>
         </div>
 
-        <div class="ml-16 mt-10 grid grid-cols-3">
+        <div class="lg:ml-16 lg:mt-10 ml-28 mt-10 lg:grid lg:grid-cols-3 block">
           <div class="bg-gray-500 h-96 w-80 border-8 rounded-2xl border-gray-800 hover:border-green-300">
               <a href="https://medium.com/@manicdon7/title-exploring-the-solana-automation-landscape-and-enabling-real-time-data-retrieval-with-parsiq-ed65b67f1b05">
               <div>
@@ -491,7 +553,7 @@ iframe {
   </div>
   <div id="Contact">
     <div class="flex justify-center mt-20">
-        <h1 class="uppercase text-7xl text-white">Here's a Contact Form</h1>
+        <h1 class="uppercase lg:text-7xl text-4xl text-white">Here's a Contact Form</h1>
     </div>
     <div class="text-center pt-10">
         <h2 class="uppercase text-4xl text-white">Have any questions?</h2>
@@ -501,12 +563,12 @@ iframe {
         seeking interns and part-time job opportunities.</p>
     </div>
     <div class="mt-20">
-      <div class="flex justify-center gap-10">
-        <input type="text" class="w-60 h-10 rounded-lg" placeholder="Name" name="Name" id="name">
-        <input type="email" class="w-60 h-10 rounded-lg" placeholder="Email" name="Email" id="email">
+      <div class="lg:flex lg:justify-center lg:gap-10 m-5">
+        <input type="text" class="w-60 h-10 rounded-lg mb-5 flex justify-center" placeholder="  Name" name="Name" id="name">
+        <input type="email" class="w-60 h-10 rounded-lg flex justify-center" placeholder="  Email" name="Email" id="email">
     </div>
-    <div class="flex justify-center mt-10 mb-10">
-        <textarea name="Subject" class="rounded-lg" id="subject" cols="67" placeholder="Type your subject here" rows="3"></textarea>
+    <div class="flex justify-center lg:mt-10 lg:mb-10 m-5">
+        <textarea name="Subject" class="rounded-lg" id="subject" cols="67" placeholder="  Type your subject here" rows="3"></textarea>
     </div>
     <div class="flex justify-center mb-10">
         <button class="text-white bg-purple-600 px-4 py-2 rounded-lg" id="sendButton">Send</button>
@@ -542,7 +604,7 @@ iframe {
           })
           .catch(function(error) {
               console.error("Email send failed: ", error);
-              alert("Email send failed. Please try again later.");
+              alert("Email send failed. Please try again later."); 
           });
       });
   </script>
@@ -562,5 +624,14 @@ iframe {
         downloadLink.click();
     });
 </script>
+<script>
+  document.addEventListener("alpine:init", () => {
+      Alpine.data("mobileMenuOpen", () => ({
+          open: false,
+      }));
+  });
+</script>
+
 </body>
 </html> 
+
